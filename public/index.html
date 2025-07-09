@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Toy Robot Simulator</title>
+      <script src="https://cdn.tailwindcss.com"></script>
+      <style>
+        /* Custom styles for the grid and tiles */
+        body {
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f4f8; /* Light background */
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            gap: 2px; /* Space between tiles */
+            aspect-ratio: 1 / 1; /* Keep the container square */
+            background-color: #cbd5e1; /* Light gray background for the grid area */
+            padding: 4px;
+            position: relative;
+            /* box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);  */
+        }
+
+        .rotate90 {
+          transform: rotate(90deg);
+        }
+
+        .rotate180 {
+          transform: rotate(180deg);
+        }
+
+        .rotate270 {
+          transform: rotate(270deg);
+        }
+
+        .tile {
+            background-color: #e2e8f0; /* Default tile color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #475569;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+            user-select: none; /* Prevent text selection on click */
+            /* Ensure tiles are square within the grid */
+            width: 64px;
+            height: 64px;
+            border-style: solid;
+            border-color: #000000;
+            padding-bottom: 100%; /* This creates the square aspect ratio */
+        }
+
+        .tile:hover {
+            background-color: #d1d8e0; /* Slightly darker on hover */
+            transform: translateY(-2px); /* Slight lift effect */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .tile.selected {
+            background-color: #60a5fa; /* Blue for selected tiles */
+            color: #ffffff; /* White text for selected tiles */
+            box-shadow: 0 10px 15px -3px rgba(96, 165, 250, 0.3), 0 4px 6px -2px rgba(96, 165, 250, 0.2);
+            transform: scale(0.98); /* Slightly shrink when selected */
+        }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="js/main.js" ></script>
+  </body>
+</html>

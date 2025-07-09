@@ -1,0 +1,17 @@
+{:source-paths
+ ["src"
+  "test/simulator"]
+
+ :dependencies [
+    [reagent "1.3.0"]
+    [re-frame "1.4.3"]
+ ]
+
+ :dev-http {8080 "public"}
+
+ :builds
+  {:app                              
+   {:target :browser                 
+    :output-dir "public/js"      ;; output js files here
+    :asset-path "/js"            ;; used to construct the URL
+    :modules {:main {:init-fn simulator.main/init}}}}}

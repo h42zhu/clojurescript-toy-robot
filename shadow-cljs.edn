@@ -14,4 +14,9 @@
    {:target :browser                 
     :output-dir "public/js"      ;; output js files here
     :asset-path "/js"            ;; used to construct the URL
-    :modules {:main {:init-fn simulator.main/init}}}}}
+    :modules {:main {:init-fn simulator.main/init}}}
+   
+   :test
+   {:target :node-test
+    :output-to "test_output/test.js"
+    :ns-regexp "-test$"}}}

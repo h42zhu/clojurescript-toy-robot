@@ -1,5 +1,6 @@
 (ns simulator.state
-  (:require [reagent.core :as r]))
+  (:require [reagent.core :as r]
+            [simulator.api :as api]))
 
 
 ;; the global application state
@@ -11,8 +12,11 @@
 
 (def tile-size 64)
 
+(defn init-state []
+  (let [last-index (api/get-index)])
+  )
 
-(defn index-to-position [idx]
-  (let [[x y] idx]
-    ;; add the spacing between tiles as well
-    [(* (+ 2 tile-size) x) (* (+ 2 tile-size) y)]))
+;; add watch for state changes and saves the new index (position) to DB
+(add-watch app-state :index
+           (fn [_ _ _ new-state]
+             (api/save-index (:index new-state))))

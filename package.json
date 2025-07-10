@@ -7,10 +7,12 @@
   },
   "dependencies": {
     "react": "^v19.1.0",
-    "react-dom": "^v19.1.0"
+    "react-dom": "^v19.1.0",
+    "sqlite3": "^5.1.7"
   },
   "scripts": {
     "watch": "npx shadow-cljs watch",
-    "test": "npx shadow-cljs compile test"
+    "start-server": "node src/server/api.js",
+    "test": "npx shadow-cljs compile test; node test_output/test.js"
   }
 }

@@ -2,6 +2,8 @@
   (:require [goog.events :as events]
             [simulator.state :as state]))
 
+;; If components are not required, using HTML Canvas is probably a better implementation choice
+
 ;; constants
 (def grid-size 5)
 (def robot-image-src "/image/robot.png")
@@ -26,7 +28,11 @@
    2 "SOUTH"
    3 "WEST"})
 
-(def log (.-log js/console))
+;; utility function for converting between tile index to position on the grid
+(defn index-to-position [idx]
+  (let [[x y] idx]
+    ;; add the spacing between tiles as well
+    [(* (+ 2 state/tile-size) x) (* (+ 2 state/tile-size) y)]))
 
 ;; Event listeners and state changes
 (defn parse-event [e]
@@ -83,7 +89,7 @@
 
 (defn place-robot []
   (let [{:keys [index direction]} @state/app-state
-        [x y] (state/index-to-position index)
+        [x y] (index-to-position index)
         [x-offset y-offset] robot-offset
         rotate-classname (get dir-to-classname direction)]
     [:div 

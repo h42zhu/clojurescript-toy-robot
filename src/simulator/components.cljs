@@ -20,6 +20,12 @@
    2 [0 -1]
    3 [-1 0]})
 
+(def dir-to-text
+  {0 "NORTH"
+   1 "EAST"
+   2 "SOUTH"
+   3 "WEST"})
+
 (def log (.-log js/console))
 
 ;; Event listeners and state changes
@@ -62,6 +68,15 @@
 )
 
 ;; Components
+(defn button
+  [props]
+  (let [{:keys [label on-click class]} props
+        default-class "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105"]
+    [:button
+     {:on-click on-click
+      :class (str default-class " " class)}
+     label]))
+
 (defn image-container [x y src class-name image-class-name]
   [:div {:className (str class-name) :style {:left x :bottom y}}
    [:img {:src src :className image-class-name}]])
@@ -91,3 +106,18 @@
      (tile x (- grid-size y 1)))
    (when robot-placed
      (place-robot))]))
+
+(defn app-container []
+  [:div
+   (grid)
+   [:div.button-container
+    (button {:label "Left" :on-click (fn [_e] (swap! state/app-state update :direction (fn [d] (rotate d -1))))} )
+    (button {:label "Move" :on-click (fn [_e] 
+                                       (let [dir (:direction @state/app-state)
+                                             change (get dir-to-coordinates dir)]
+                                         (swap! state/app-state update :index (fn [idx] (move idx change)))))})
+    (button {:label "Right" :on-click (fn [_e] (swap! state/app-state update :direction (fn [d] (rotate d 1))))})]
+   [:div
+    (button {:label "Report" :on-click (fn [_e] 
+                                          (let [{:keys [index direction]} @state/app-state]
+                                            (js/alert (str (first index) "," (second index) "," (get dir-to-text direction "")))))} )]])

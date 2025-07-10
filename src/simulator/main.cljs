@@ -9,4 +9,4 @@
 (defn ^:export init []
   (let [root (rdom/create-root (js/document.getElementById "app"))]
     (components/init-event-listeners)
-    (rdom/render root [components/grid])))
+    (rdom/render root [components/app-container])))

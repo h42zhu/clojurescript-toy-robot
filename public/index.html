@@ -7,27 +7,31 @@
       <style>
         /* Custom styles for the grid and tiles */
         body {
-            font-family: 'Inter', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #f0f4f8; /* Light background */
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
+          font-family: 'Inter', sans-serif;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+          background-color: #f0f4f8; /* Light background */
+          margin: 0;
+          padding: 20px;
+          box-sizing: border-box;
+        }
+        .button-container {
+          display: flex;
+          justify-content: space-between;
         }
 
         .container {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            grid-template-rows: repeat(5, 1fr);
-            gap: 2px; /* Space between tiles */
-            aspect-ratio: 1 / 1; /* Keep the container square */
-            background-color: #cbd5e1; /* Light gray background for the grid area */
-            padding: 4px;
-            position: relative;
-            /* box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);  */
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          grid-template-rows: repeat(5, 1fr);
+          gap: 2px; /* Space between tiles */
+          aspect-ratio: 1 / 1; /* Keep the container square */
+          background-color: #cbd5e1; /* Light gray background for the grid area */
+          padding: 4px;
+          position: relative;
+          /* box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);  */
         }
 
         .rotate90 {
